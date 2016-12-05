@@ -41,14 +41,49 @@
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-servlet-core</artifactId>
-            <!-- use the following artifactId if you don't need servlet 2.x compatibility -->
-            <!-- artifactId>jersey-container-servlet</artifactId -->
+			<version>${jersey.version}</version>
+			<scope>${jersey.scope}</scope>
         </dependency>
-
+        
+        <!--  
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-moxy</artifactId>
         </dependency>
+        -->
+        
+        <!-- Jersey extension module providing support for Spring 3 integration -->
+		<dependency>
+			<groupId>org.glassfish.jersey.ext</groupId>
+			<artifactId>jersey-spring3</artifactId>
+			<version>${jersey.version}</version>
+			<scope>${jersey.scope}</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-web</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+        
+        <dependency>
+	        <groupId>org.springframework</groupId>
+	        <artifactId>spring-webmvc</artifactId>
+	        <version>${spring.version}</version>
+	    </dependency>
+        <dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>spring-orm</artifactId>
+        	<version>${spring.version}</version>
+    	</dependency>
         
         <!-- Hibernate Core 4.2.x -->
 		<dependency>
@@ -68,15 +103,12 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-catalina</artifactId>
-			<version>8.0.5</version>
-		</dependency>
 
     </dependencies>
     <properties>
         <jersey.version>2.24.1</jersey.version>
+		<jersey.scope>compile</jersey.scope>
+        <spring.version>4.1.0.RELEASE</spring.version>
         <hibernate.version>4.2.15.Final</hibernate.version> <!-- 4.3.x doesn't work -->
 		<mysql.version>5.1.32</mysql.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

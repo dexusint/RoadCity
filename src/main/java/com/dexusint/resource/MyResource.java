@@ -1,4 +1,4 @@
-package com.dexusint;
+package com.dexusint.resource;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
