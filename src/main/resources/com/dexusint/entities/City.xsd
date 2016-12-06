@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://benchresources.in/cdm/City" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://benchresources.in/cdm/City">
+
+	<!-- book object with four attributes -->
+	<xsd:element name="CityType">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="cityId" type="xsd:int" />
+				<xsd:element name="cityTitle" type="xsd:string" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<!-- an object to contain lists of books referencing above Book object -->
+	<xsd:element name="CityListType">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="tns:CityType" minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+</xsd:schema>

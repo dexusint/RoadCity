@@ -47,5 +47,4 @@
         <property name="username" value="denis" />
         <property name="password" value="" />
     </bean>
- 
 </beans>

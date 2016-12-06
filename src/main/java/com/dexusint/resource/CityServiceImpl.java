@@ -1,7 +1,8 @@
 package com.dexusint.resource;
 
 import java.util.List;
-import java.util.ArrayList;
+import in.benchresources.cdm.city.CityType;
+import in.benchresources.cdm.city.CityListType;
 
 import com.dexusint.model.City;
 
@@ -19,7 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
  
 import com.dexusint.dao.CityDAO;
-import com.dexusint.model.City;
+//import com.dexusint.model.City;
 
 
 @Component
@@ -28,19 +29,20 @@ public class CityServiceImpl implements CityService {
     @Autowired
     private CityDAO cityDAO;
 	
-	
 	@GET
 	@Path("getallcities")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public List<City> getAllCities() {
+	public CityListType getAllCities() {
 
 	    List<City> lstCities = cityDAO.getAllCities();
-	    List<City> returnCities = new ArrayList<City>();
+	    CityListType returnCities = new CityListType();
 
 	    for(City city : lstCities){
-
-	        returnCities.add(city); // add to bookListType
+            CityType cityType = new CityType();
+            cityType.setCityId(city.getCityId());
+            cityType.setCityTitle(city.getCityTitle());
+	        returnCities.getCityType().add(cityType); // add to bookListType
 	    }
 	    return returnCities;
 	}
