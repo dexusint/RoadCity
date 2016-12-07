@@ -1,8 +1,8 @@
-package com.dexusint.dao;
+package com.dexusint.city.dao;
 
 import java.util.List;
 
-import com.dexusint.model.City;
+import com.dexusint.city.model.City;
 
 public interface CityDAO {
 	public String insertNewCityInfo(City addCity);

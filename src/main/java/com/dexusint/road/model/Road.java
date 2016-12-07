@@ -1,4 +1,4 @@
-package com.dexusint.model;
+package com.dexusint.road.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,6 +19,12 @@ public class Road {
  
     @Column(name= "TITLE")
     private String roadTitle;
+    
+    @Column(name= "CITY_BEG")
+    private String cityBeg;
+    
+    @Column(name= "CITY_END")
+    private String cityEnd;
  
     // getters & setters
     public int getRoadId() {
@@ -38,6 +44,20 @@ public class Road {
     }
     public void setRoadTitle(String roadTitle) {
         this.roadTitle = roadTitle;
+    }
+    
+    public String getCityBeg() {
+        return cityBeg;
+    }
+    public void setCityBeg(String cityBeg) {
+        this.cityBeg = cityBeg;
+    }
+    
+    public String getCityEnd() {
+        return cityEnd;
+    }
+    public void setCityEnd(String cityEnd) {
+        this.cityEnd = cityEnd;
     }  
 }
 

@@ -1,4 +1,4 @@
-package com.dexusint.resource;
+package com.dexusint.city.resource;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

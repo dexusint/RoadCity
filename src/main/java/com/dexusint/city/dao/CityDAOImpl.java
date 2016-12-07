@@ -1,4 +1,4 @@
-package com.dexusint.dao;
+package com.dexusint.city.dao;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dexusint.model.City;
+import com.dexusint.city.model.City;
 
 @Repository("cityDAO")
 public class CityDAOImpl implements CityDAO {

@@ -27,7 +27,8 @@
         <property name="dataSource" ref="dataSource" />
         <property name="annotatedClasses">
             <list>
-                <value>com.dexusint.model.City</value>
+                <value>com.dexusint.city.model.City</value>
+                <value>com.dexusint.road.model.Road</value>
             </list>
         </property>
         <property name="hibernateProperties">

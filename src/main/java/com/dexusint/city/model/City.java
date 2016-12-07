@@ -1,4 +1,4 @@
-package com.dexusint.model;
+package com.dexusint.city.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

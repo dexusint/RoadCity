@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://benchresources.in/cdm/Road" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://benchresources.in/cdm/Road">
+
+	<!-- book object with four attributes -->
+	<xsd:element name="RoadType">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="roadId" type="xsd:int" />
+				<xsd:element name="index" type="xsd:int" />
+				<xsd:element name="title" type="xsd:string"></xsd:element>
+				<xsd:element name="cityBeg" type="xsd:string"></xsd:element>
+				<xsd:element name="cityEnd" type="xsd:string"></xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<!-- an object to contain lists of books referencing above Book object -->
+	<xsd:element name="RoadListType">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="tns:RoadType" minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+</xsd:schema>

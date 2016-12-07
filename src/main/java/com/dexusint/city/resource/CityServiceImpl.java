@@ -1,10 +1,10 @@
-package com.dexusint.resource;
+package com.dexusint.city.resource;
 
 import java.util.List;
 import in.benchresources.cdm.city.CityType;
 import in.benchresources.cdm.city.CityListType;
 
-import com.dexusint.model.City;
+import com.dexusint.city.model.City;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -19,7 +19,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
  
-import com.dexusint.dao.CityDAO;
+import com.dexusint.city.dao.CityDAO;
 //import com.dexusint.model.City;
 
 
