@@ -22,6 +22,42 @@ public class CityDAOImpl implements CityDAO {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
+	
+	@Override
+    @Transactional
+    public String insertNewCityInfo(City city) {
+ 
+        // inserts into database & return bookId (primary_key)
+        int cityId = (Integer) sessionFactory.getCurrentSession().save(city);
+        return "City information saved successfully with City_ID " + cityId;
+    }
+	
+    @Override
+    @Transactional
+    public String updateCityInfo(City updateCity) {
+ 
+        // update database with book information and return success msg
+        sessionFactory.getCurrentSession().update(updateCity);
+        return "City information updated successfully";
+    }
+ 
+    @Override
+    @Transactional
+    public String removeCityInfo(City removeCity) {
+ 
+        // delete book information and return success msg
+        sessionFactory.getCurrentSession().delete(removeCity);
+        return "City information with City_ID " + removeCity.getCityId() +  " deleted successfully";
+    }
+	
+    @Override
+    @Transactional
+    public City getCityInfo(int cityId) {
+ 
+        City city = (City) sessionFactory.getCurrentSession().get(City.class, cityId);
+        return city;
+    }
+ 
 
 	@SuppressWarnings("unchecked")
 	@Override
