@@ -25,18 +25,18 @@ public class RoadDAOImpl implements RoadDAO {
 	
 	@Override
     @Transactional
-    public String insertNewRoadInfo(Road city) {
+    public String insertNewRoadInfo(Road road) {
  
-        // inserts into database & return bookId (primary_key)
-        int cityId = (Integer) sessionFactory.getCurrentSession().save(city);
-        return "Road information saved successfully with Road_ID " + cityId;
+        // inserts into database & return roadId (primary_key)
+        int roadId = (Integer) sessionFactory.getCurrentSession().save(road);
+        return "Road information saved successfully with Road_ID " + roadId;
     }
 	
     @Override
     @Transactional
     public String updateRoadInfo(Road updateRoad) {
  
-        // update database with book information and return success msg
+        // update database with road information and return success msg
         sessionFactory.getCurrentSession().update(updateRoad);
         return "Road information updated successfully";
     }
@@ -45,16 +45,16 @@ public class RoadDAOImpl implements RoadDAO {
     @Transactional
     public String removeRoadInfo(Road removeRoad) {
  
-        // delete book information and return success msg
+        // delete road information and return success msg
         sessionFactory.getCurrentSession().delete(removeRoad);
         return "Road information with Road_ID " + removeRoad.getRoadId() +  " deleted successfully";
     }
 	
     @Override
     @Transactional
-    public Road getRoadInfo(int cityId) {
+    public Road getRoadInfo(int roadId) {
  
-        Road city = (Road) sessionFactory.getCurrentSession().get(Road.class, cityId);
+        Road city = (Road) sessionFactory.getCurrentSession().get(Road.class, roadId);
         return city;
     }
  
@@ -62,10 +62,10 @@ public class RoadDAOImpl implements RoadDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
-	public List<Road> getAllCities() {
+	public List<Road> getAllRoads() {
 
 		// get all books info from database
-		List<Road> lstBook = sessionFactory.getCurrentSession().createCriteria(Road.class).list();
-		return lstBook;
+		List<Road> lstRoad = sessionFactory.getCurrentSession().createCriteria(Road.class).list();
+		return lstRoad;
 	}
 }

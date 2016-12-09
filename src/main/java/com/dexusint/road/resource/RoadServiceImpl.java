@@ -11,6 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,55 +24,61 @@ import in.benchresources.cdm.road.RoadType;
 
 @Component
 @Path("/roadservice")
-public class RoadServiceImpl {
+public class RoadServiceImpl implements RoadService {
 
- @Autowired
+    @Autowired
     private RoadDAO roadDAO;
     
     @POST
     @Path("addroad")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_FORM_URLENCODED)
-    public String createOrSaveRoadInfo(RoadType roadType) {
+    public Response createOrSaveRoadInfo(RoadType roadType) {
  
         // unwrap roadType and set in Model object Road
         Road newRoad = new Road();
         newRoad.setRoadId(roadType.getRoadId());
-        newRoad.setRoadTitle(roadType.getTitle());
-        newRoad.setRoadIndex(roadType.getIndex());
-        newRoad.setCityBeg(roadType.getCityBeg());
-        newRoad.setCityEnd(roadType.getCityEnd());
-        return roadDAO.insertNewRoadInfo(newRoad);
+        newRoad.setRoadIndex(roadType.getRoadIndex());
+        newRoad.setRoadTitle(roadType.getRoadTitle());
+        newRoad.setCityBegId(roadType.getCityBegId());
+        newRoad.setCityEndId(roadType.getCityEndId());
+        String result = roadDAO.insertNewRoadInfo(newRoad);
+        
+        return Response.status(200).entity(result).build();
     }
     
     @PUT
     @Path("updateroad")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_FORM_URLENCODED)
-    public String updateRoadInfo(RoadType roadType) {
+    public Response updateRoadInfo(RoadType roadType) {
  
         // unwrap roadType and set in Model object Road
         Road modifyRoad = new Road();
         modifyRoad.setRoadId(roadType.getRoadId());
-        modifyRoad.setRoadTitle(roadType.getTitle());
-        modifyRoad.setRoadIndex(roadType.getIndex());
-        modifyRoad.setCityBeg(roadType.getCityBeg());
-        modifyRoad.setCityEnd(roadType.getCityEnd());
+        modifyRoad.setRoadTitle(roadType.getRoadTitle());
+        modifyRoad.setRoadIndex(roadType.getRoadIndex());
+        modifyRoad.setCityBegId(roadType.getCityBegId());
+        modifyRoad.setCityEndId(roadType.getCityEndId());
  
         // update road info & return SUCCESS message
-        return roadDAO.updateRoadInfo(modifyRoad);
+        String result = roadDAO.updateRoadInfo(modifyRoad);
+        
+        return Response.status(200).entity(result).build();
     }
  
     @DELETE
     @Path("deleteroad/{id}")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_FORM_URLENCODED)
-    public String deleteRoadInfo(@PathParam("id") int roadId) {
+    public Response deleteRoadInfo(@PathParam("id") int roadId) {
  
         // delete road info & return SUCCESS message
     	Road removeRoad = new Road();
         removeRoad.setRoadId(roadId);
-        return roadDAO.removeRoadInfo(removeRoad);
+        String result = roadDAO.removeRoadInfo(removeRoad);
+        
+        return Response.status(200).entity(result).build();
     }
     
     @GET
@@ -85,10 +92,10 @@ public class RoadServiceImpl {
  
         RoadType roadType = new RoadType();
         roadType.setRoadId(getRoad.getRoadId());
-        roadType.setIndex(getRoad.getRoadIndex());
-        roadType.setTitle(getRoad.getRoadTitle());
-        roadType.setCityBeg(getRoad.getCityBeg());
-        roadType.setCityEnd(getRoad.getCityEnd());
+        roadType.setRoadIndex(getRoad.getRoadIndex());
+        roadType.setRoadTitle(getRoad.getRoadTitle());
+        roadType.setCityBegId(getRoad.getCityBegId());
+        roadType.setCityEndId(getRoad.getCityEndId());
         return roadType;
     }
 	
@@ -96,20 +103,21 @@ public class RoadServiceImpl {
 	@Path("getallroads")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public RoadListType getAllCities() {
+	public RoadListType getAllRoads() {
 
-	    List<Road> lstCities = roadDAO.getAllCities();
-	    RoadListType returnCities = new RoadListType();
+	    List<Road> lstRoads = roadDAO.getAllRoads();
+	    RoadListType returnRoads = new RoadListType();
 
-	    for(Road road : lstCities){
+	    for(Road road : lstRoads){
             RoadType roadType = new RoadType();
             roadType.setRoadId(road.getRoadId());
-            roadType.setIndex(road.getRoadIndex());
-            roadType.setTitle(road.getRoadTitle());
-            roadType.setCityBeg(road.getCityBeg());
-            roadType.setCityEnd(road.getCityEnd());
-	        returnCities.getRoadType().add(roadType); // add to bookListType
+            roadType.setRoadIndex(road.getRoadIndex());
+            roadType.setRoadTitle(road.getRoadTitle());
+            roadType.setCityBegId(road.getCityBegId());
+            roadType.setCityEndId(road.getCityEndId());
+            returnRoads.getRoadType().add(roadType); // add to bookListType
 		    }
-		    return returnCities;
-		}
+		
+	    return returnRoads;
+	}
 }

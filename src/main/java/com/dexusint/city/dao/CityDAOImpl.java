@@ -27,7 +27,7 @@ public class CityDAOImpl implements CityDAO {
     @Transactional
     public String insertNewCityInfo(City city) {
  
-        // inserts into database & return bookId (primary_key)
+        // inserts into database & return roadId (primary_key)
         int cityId = (Integer) sessionFactory.getCurrentSession().save(city);
         return "City information saved successfully with City_ID " + cityId;
     }
@@ -36,7 +36,7 @@ public class CityDAOImpl implements CityDAO {
     @Transactional
     public String updateCityInfo(City updateCity) {
  
-        // update database with book information and return success msg
+        // update database with road information and return success msg
         sessionFactory.getCurrentSession().update(updateCity);
         return "City information updated successfully";
     }
@@ -45,7 +45,7 @@ public class CityDAOImpl implements CityDAO {
     @Transactional
     public String removeCityInfo(City removeCity) {
  
-        // delete book information and return success msg
+        // delete road information and return success msg
         sessionFactory.getCurrentSession().delete(removeCity);
         return "City information with City_ID " + removeCity.getCityId() +  " deleted successfully";
     }

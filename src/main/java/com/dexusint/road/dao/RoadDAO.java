@@ -6,8 +6,8 @@ import com.dexusint.road.model.Road;
 
 public interface RoadDAO {
 	public String insertNewRoadInfo(Road addRoad);
-	public Road getRoadInfo(int cityId);
+	public Road getRoadInfo(int roadId);
     public String updateRoadInfo(Road updateRoad);
     public String removeRoadInfo(Road removeRoad);
-	public List<Road> getAllCities();
+	public List<Road> getAllRoads();
 }

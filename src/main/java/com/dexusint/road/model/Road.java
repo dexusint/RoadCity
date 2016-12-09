@@ -14,17 +14,17 @@ public class Road {
     @Column(name = "ROAD_ID")
     private int roadId;
  
-    @Column(name= "INDEX")
+    @Column(name= "ROAD_INDEX")
     private int roadIndex;
  
-    @Column(name= "TITLE")
+    @Column(name= "ROAD_TITLE")
     private String roadTitle;
     
-    @Column(name= "CITY_BEG")
-    private String cityBeg;
+    @Column(name= "CITY_BEG_ID")
+    private int cityBegId;
     
-    @Column(name= "CITY_END")
-    private String cityEnd;
+    @Column(name= "CITY_END_ID")
+    private int cityEndId;
  
     // getters & setters
     public int getRoadId() {
@@ -46,18 +46,18 @@ public class Road {
         this.roadTitle = roadTitle;
     }
     
-    public String getCityBeg() {
-        return cityBeg;
+    public int getCityBegId() {
+        return cityBegId;
     }
-    public void setCityBeg(String cityBeg) {
-        this.cityBeg = cityBeg;
+    public void setCityBegId(int cityBegId) {
+        this.cityBegId = cityBegId;
     }
     
-    public String getCityEnd() {
-        return cityEnd;
+    public int getCityEndId() {
+        return cityEndId;
     }
-    public void setCityEnd(String cityEnd) {
-        this.cityEnd = cityEnd;
+    public void setCityEndId(int cityEndId) {
+        this.cityEndId = cityEndId;
     }  
 }
 

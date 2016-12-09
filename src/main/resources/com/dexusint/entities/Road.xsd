@@ -6,10 +6,10 @@
 		<xsd:complexType>
 			<xsd:sequence>
 				<xsd:element name="roadId" type="xsd:int" />
-				<xsd:element name="index" type="xsd:int" />
-				<xsd:element name="title" type="xsd:string"></xsd:element>
-				<xsd:element name="cityBeg" type="xsd:string"></xsd:element>
-				<xsd:element name="cityEnd" type="xsd:string"></xsd:element>
+				<xsd:element name="roadIndex" type="xsd:int" />
+				<xsd:element name="roadTitle" type="xsd:string"></xsd:element>
+				<xsd:element name="cityBegId" type="xsd:int"></xsd:element>
+				<xsd:element name="cityEndId" type="xsd:int"></xsd:element>
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>

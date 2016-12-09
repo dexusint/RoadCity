@@ -15,6 +15,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -33,20 +34,22 @@ public class CityServiceImpl implements CityService {
     @Path("addcity")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_FORM_URLENCODED)
-    public String createOrSaveCityInfo(CityType cityType) {
+    public Response createOrSaveCityInfo(CityType cityType) {
  
         // unwrap cityType and set in Model object City
         City newCity = new City();
         newCity.setCityId(cityType.getCityId());
         newCity.setCityTitle(cityType.getCityTitle());
-        return cityDAO.insertNewCityInfo(newCity);
+        String result = cityDAO.insertNewCityInfo(newCity);
+        
+        return Response.status(200).entity(result).build();
     }
     
     @PUT
     @Path("updatecity")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_FORM_URLENCODED)
-    public String updateCityInfo(CityType cityType) {
+    public Response updateCityInfo(CityType cityType) {
  
         // unwrap cityType and set in Model object City
         City modifyCity = new City();
@@ -54,19 +57,23 @@ public class CityServiceImpl implements CityService {
         modifyCity.setCityTitle(cityType.getCityTitle());
  
         // update city info & return SUCCESS message
-        return cityDAO.updateCityInfo(modifyCity);
+        String result = cityDAO.updateCityInfo(modifyCity);
+        
+        return Response.status(200).entity(result).build();
     }
  
     @DELETE
     @Path("deletecity/{id}")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_FORM_URLENCODED)
-    public String deleteCityInfo(@PathParam("id") int cityId) {
+    public Response deleteCityInfo(@PathParam("id") int cityId) {
  
         // delete city info & return SUCCESS message
     	City removeCity = new City();
         removeCity.setCityId(cityId);
-        return cityDAO.removeCityInfo(removeCity);
+        String result = cityDAO.removeCityInfo(removeCity);
+        
+        return Response.status(200).entity(result).build();
     }
     
     @GET
