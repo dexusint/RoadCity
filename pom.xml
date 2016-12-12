@@ -33,8 +33,7 @@
 							<goal>xjc</goal><!-- xjc/generate -->
 						</goals>
 						<configuration>
-							<outputDirectory>${basedir}/generated/java/source
-							</outputDirectory>
+							<outputDirectory>${basedir}/src/main/java/generated</outputDirectory>
 							<schemaDirectory>${basedir}/src/main/resources/com/dexusint/entities</schemaDirectory>
 							<schemaFiles>*.xsd</schemaFiles>
 							<schemaLanguage>XMLSCHEMA</schemaLanguage>
