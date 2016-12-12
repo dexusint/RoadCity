@@ -20,6 +20,11 @@
         class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
+    
+    <bean id="roadCityService" class="com.dexusint.RoadCityServiceImpl"/>
+
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+
  
     <!-- Session Factory -->
     <bean id="sessionFactory"

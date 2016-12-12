@@ -1,5 +1,6 @@
 package com.dexusint.city.resource;
 
+
 import javax.ws.rs.core.Response;
 
 import in.benchresources.cdm.city.CityListType;
