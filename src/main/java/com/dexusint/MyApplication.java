@@ -1,5 +1,7 @@
 package com.dexusint;
 
+import com.dexusint.city.resource.*;
+
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 import java.util.HashSet;
@@ -15,6 +17,7 @@ public class MyApplication extends Application {
         final Set<Class<?>> classes = new HashSet<Class<?>>();
         // register root resource
         classes.add(RoadCityService.class);
+        classes.add(CityServiceImpl.class);
         return classes;
     }
 }

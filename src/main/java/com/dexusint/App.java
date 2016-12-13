@@ -1,5 +1,7 @@
 package com.dexusint;
 
+import com.dexusint.city.resource.*;
+
 import java.io.IOException;
 import java.net.URI;
 import java.util.HashMap;
@@ -29,6 +31,9 @@ public class App {
             initParams.put(
                     ServerProperties.PROVIDER_PACKAGES,
                     RoadCityService.class.getPackage().getName());
+            initParams.put(
+                    ServerProperties.PROVIDER_PACKAGES,
+                    CityServiceImpl.class.getPackage().getName());
             final HttpServer server = GrizzlyWebContainerFactory.create(BASE_URI, ServletContainer.class, initParams);
             Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
                 @Override
