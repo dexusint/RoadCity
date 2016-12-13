@@ -1,6 +1,7 @@
 package com.dexusint;
 
 import com.dexusint.city.resource.*;
+import com.dexusint.road.resource.*;
 
 import java.io.IOException;
 import java.net.URI;
