@@ -2,49 +2,47 @@ package com.dexusint;
 
 import java.io.IOException;
 import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
-import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.grizzly2.servlet.GrizzlyWebContainerFactory;
+import org.glassfish.jersey.server.ServerProperties;
+import org.glassfish.jersey.servlet.ServletContainer;
 
 import org.glassfish.grizzly.http.server.HttpServer;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
 /**
- * @author Denis Lyubo
+ * @author Pavel Bucek (pavel.bucek at oracle.com)
  */
 public class App {
 
-    private static final URI BASE_URI = URI.create("http://localhost:8080/webapi/");
-
-    public static final String ROOT_PATH = "base";
+    private static final URI BASE_URI = URI.create("http://localhost:8080/helloworld-webapp/");
+    public static final String ROOT_PATH = "helloworld";
 
     public static void main(String[] args) {
         try {
-            System.out.println("\"Hello World\" Jersey-Spring Example App");
+            System.out.println("\"Hello World\" Jersey Example App");
 
-            final JerseyConfig resourceConfig = new JerseyConfig();
-            resourceConfig.property("contextConfig", new AnnotationConfigApplicationContext(SpringAnnotationConfig.class));
-
-            final HttpServer server = GrizzlyHttpServerFactory.createHttpServer(BASE_URI, resourceConfig, false);
+            Map<String, String> initParams = new HashMap<>();
+            initParams.put(
+                    ServerProperties.PROVIDER_PACKAGES,
+                    RoadCityService.class.getPackage().getName());
+            final HttpServer server = GrizzlyWebContainerFactory.create(BASE_URI, ServletContainer.class, initParams);
             Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
                 @Override
                 public void run() {
                     server.shutdownNow();
                 }
             }));
-            server.start();
 
-            System.out.println(String.format("Application started.\nTry out %s%s\nStop the application using CTRL+C",
+            System.out.println(String.format("Application started.%nTry out %s%s%nStop the application using CTRL+C",
                     BASE_URI, ROOT_PATH));
 
             Thread.currentThread().join();
         } catch (IOException | InterruptedException ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 }
