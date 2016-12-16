@@ -8,6 +8,9 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.junit.Assert.assertEquals;
 
@@ -16,21 +19,23 @@ import static org.junit.Assert.assertEquals;
  *
  * @author Jakub Podlesak (jakub.podlesak at oracle.com)
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration({"classpath:applicationContext.xml"})
 public class HelloWorldTest extends JerseyTest {
 
     @Override
     protected Application configure() {
-        return new ResourceConfig(RoadCityService.class);
+    	return new MyApplication();
     }
-
-    @Override
-    protected URI getBaseUri() {
-        return UriBuilder.fromUri(super.getBaseUri()).path("helloworld-webapp").build();
-    }
+//
+//    @Override
+//    protected URI getBaseUri() {
+//        return UriBuilder.fromUri(super.getBaseUri()).path("helloworld-webapp").build();
+//    }
 
     @Test
     public void testClientStringResponse() {
         String s = target().path("spring-hello").request().get(String.class);
-        assertEquals("Hello World!", s);
+        assertEquals("world", s);
     }
 }
