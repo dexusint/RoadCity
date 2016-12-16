@@ -28,7 +28,7 @@
     <!-- loading Spring Context for registering beans with ApplicationContext -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>WEB-INF/spring-hibernate-jersey2.xml</param-value>
+        <param-value>WEB-INF/conf/applicationContext.xml</param-value>
     </context-param>
 
 </web-app>
